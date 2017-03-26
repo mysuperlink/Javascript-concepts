@@ -60,4 +60,43 @@ callFn.call(vC, "aatif")
 myCar.showColor.apply(myCar, ["White"])
 
 
+// Callback 
+// when we pass funtion as an argument
+
+function addNumber(a, b, callback){
+	let c = a + b;
+	callback(c);
+}
+
+addNumber(2, 4, function(sum){
+	console.log(sum)
+})
+
+
+//let is a variable whose value is known inside a block 
+for(let i =0; i<3; i ++){}
+
+//Iterators in ES6
+var words = ['A', 'B', 'C'];
+for(let word of words.entries())
+  console.log(word); // it will return array like 
+					 // [0, "A"], [1, "B"] .... 
+
+for(let word of words.keys())
+  console.log(word); // it will return array like 
+					 // 0,1,2 .... 
+
+
+//Generators in ES6 
+
+// these functions are defined with * 
+// they return an iterator and use next()
+// method to call f(n)
+function* sayHello(){
+  console.log('hey Generator')
+}
+let say = sayHello();
+
+console.log(say.next());
+
 
