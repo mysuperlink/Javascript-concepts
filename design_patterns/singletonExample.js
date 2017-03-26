@@ -25,3 +25,4 @@
  
 })()
 makeCar.getInstance();
+// here we have one instance to access all function which is inside getInstance
