@@ -21,4 +21,10 @@ Singleton Pattern
 
 Singleton pattern is based on the concept of single instance. I will explain with the example below
  
+Observer pattern
+Its a pattern where an object maintains a list of objects which is to be notified of changes
+Components of this pattern are :
+	Subject : Maintains a list of object
+	Observer : provide an update for the internal object
+
 
