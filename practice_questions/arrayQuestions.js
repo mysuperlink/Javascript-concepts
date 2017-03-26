@@ -26,16 +26,16 @@ console.log(no_cars_new);
 
 // BUBLE SORT [Ascending array] in one array with module patten example or closure
 // Sort an Array ascending order in IIFE
-var myIife  = (function(){
+var myIIfe  = (function(){
 	var sort_item = ["4", "2", "5", "1"];
 
 	var sortAscending = function(){
   		for(var k = 0; k < sort_item.length; k++ ){
 			for(var m = 0; m < sort_item.length; m++){
 				if(sort_item[m] > sort_item[m + 1]){
-				var temp = sort_item[m];  // 4
-				sort_item[m] = sort_item[m + 1]; // 2
-				sort_item[m+1] = temp;
+					var temp = sort_item[m];  // 4
+					sort_item[m] = sort_item[m + 1]; // 2
+					sort_item[m+1] = temp;
 				}
 				
 			}
@@ -43,9 +43,57 @@ var myIife  = (function(){
       	return sort_item;
 	}
     return {
-      test : sortAscending
+      accessKey : sortAscending
     }
 })()
-console.log(myIife.test()); // [1,2,4,5]
+console.log(myIIfe.accessKey()); // [1,2,4,5]
+
+// SELECTION SORT [Ascending array] 
+// var sort_item = ["4", "2", "5", "1"]; //[2,4,5,1]
+// function selectionSort(){
+// 	for(var k = 0; k < sort_item.length; k++){
+// 		var min = sort_item[k];  // 4
+//         var index = k;
+//       console.log(sort_item)
+// 		for(var m = 0; m < sort_item.length; m++){
+// 			if(sort_item[index] > sort_item[m]){
+//                 //var d = sort_item[k]
+// 				sort_item[index] = sort_item[m]; // 2
+// 				sort_item[m] = min;
+//                 index = m;
+//                // min = sort_item[m];
+//                 //index = m;
+// 			}
+        
+// 		}
+//       console.log(k)
+//         console.log(sort_item)
+		
+// 	}
+// }
+// // [2,4,5,1]
+// selectionSort();
+// console.log(sort_item)
+
+// Remove Duplicates in an array
+
+var dupArray  = [2,6,7,5,2,8,6];
+var someObj = {}
+function dupArrayFn(){
+	for(let k = 0; k < dupArray.length; k ++){
+		if(!someObj.hasOwnProperty(dupArray[k])){
+			someObj[dupArray[k]] = dupArray[k];
+		}else{
+			dupArray.splice(k, 1);
+		}
+	}
+	
+}
+dupArrayFn();
+console.log(dupArray);
+
+
+
+
 
 
