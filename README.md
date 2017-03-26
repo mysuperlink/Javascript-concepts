@@ -5,3 +5,4 @@ Rapid fire question
 Node Js / Express
 React Redux Concepts
 Jquery
+WEB ACCESSIBILITY
