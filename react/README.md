@@ -1,7 +1,8 @@
 What is React ?
 
 React is a UI library build by some really awesome people at FB. It works on the concept of virtual DOM.
-#Points to know
+	
+	#Points to know
 	Virtual DOM
 	ReactELement vs ReactComponent
 	Props vs state
