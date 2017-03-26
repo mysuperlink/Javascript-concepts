@@ -92,6 +92,23 @@ function dupArrayFn(){
 dupArrayFn();
 console.log(dupArray);
 
+// Find index of the element in array
+
+var simpleArray = [3,4,5,7,9, "A", "C"];
+
+var indexValue = null;
+
+Array.prototype.newIndexOf = function(arg){
+  for(let k = 0; k < simpleArray.length; k++){
+    if(simpleArray[k] == arg){
+      indexValue = k;
+    }
+  }
+}
+
+simpleArray.newIndexOf("A")
+console.log(indexValue);
+
 
 
 
