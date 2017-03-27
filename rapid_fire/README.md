@@ -112,6 +112,10 @@ QUICKY
 	typeof null					// object
 	typeof undefined 			// undefined
 	null === undefined 			// false
+	typeof NaN					// number
+	var a = 2, b = 3				// a = 3 also b = 3
+	var y = 1, x = y = typeof x 	// value of x will be undefined since type of x is undefined
+	+'dude' 					// NaN
 
 How JSONP works for CORS
 
@@ -137,7 +141,7 @@ Implement a function for add(3,5) and add(3)(5)
 	var init = add(3);  // here we stored return function from a
 	init(5);  	// 8
 	init(7);	// 10
-	add(3,5)   	// 8
+	add(3)(5)   	// 8
 
 
 

@@ -6,3 +6,5 @@
 	React Redux Concepts
 	Jquery
 	WEB ACCESSIBILITY
+	Optimizing Web APP
+	Grunt Gulp Webpack NPM
