@@ -99,6 +99,7 @@ Primitive data types in JS
 	symbol
 
 	what do we mean by primitive?.
+	Primitive data types are immutable whose type cant be changed.
 	Other than these 6 everything other than is an object 
 
 what is null ?
@@ -143,6 +144,24 @@ Implement a function for add(3,5) and add(3)(5)
 	init(7);	// 10
 	add(3)(5)   	// 8
 
+What is the use of Strict mode ?
 
+	It is used to throw run time errors like when you did not declare a variable or trying to delete a non existing property
+
+Difference between
+	function test(){
+		return {
+			a : "hi"
+		}
+	}
+
+	function test2(){
+		return 
+		{
+			a : "hi"
+		}
+	}
+	console.log(test())  // prints object
+	console.log(test2())  // prints undefined as per behaviour of JS it explicity add semicolon after return
 
 

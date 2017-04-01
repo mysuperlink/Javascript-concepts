@@ -48,6 +48,30 @@ var myIIfe  = (function(){
 })()
 console.log(myIIfe.accessKey()); // [1,2,4,5]
 
+
+// Ascending order
+var someArray = [2,8,5,0,13,3]
+function ascendingSort(){
+  for(var i =0; i<someArray.length; i++){
+    for(var k=0; k <someArray.length; k++){
+       if(someArray[i] > someArray[k]){
+         //num = someArray[k];
+         var temp = someArray[i]
+         someArray[i] = someArray[k];
+         someArray[k] = temp;
+       }
+    }
+   
+    
+  }
+}
+
+ascendingSort();
+console.log(someArray)
+// Find second largest element in array
+console.log(someArray[1])
+
+
 // SELECTION SORT [Ascending array] 
 // var sort_item = ["4", "2", "5", "1"]; //[2,4,5,1]
 // function selectionSort(){
@@ -109,7 +133,31 @@ Array.prototype.newIndexOf = function(arg){
 simpleArray.newIndexOf("A")
 console.log(indexValue);
 
+//Find missing elements in array
+var someArray = [2,8,5,0,13,3]
+function findMissingElementInArray(){
+  // sum of elements in array
+  // lets say 2+8+5+0+13+3 == 31
+  // lets say 5 is out
+  // 31 - [2+8+0+13+3] = 31-26 = 5 
+  // 
+}
 
+// Largest element in ARRAY....
+var num = someArray[0];
+function largestElemInArray(){
+  for(var i =0; i<someArray.length; i++){
+    for(var k=0; k <someArray.length; k++){
+       if(num < someArray[k]){
+         num = someArray[k];
+       }
+    }
+   
+    
+  }
+}
+
+largestElemInArray();
 
 
 
