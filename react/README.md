@@ -11,6 +11,7 @@ React is a UI library build by some really awesome people at FB. It works on the
 	Synthetic Events
 	FLux architecture
 	Redux
+	Concept of KEYS
 
 
 How does Virtual DOM works?
@@ -99,4 +100,32 @@ FLUX Architecture
  	Redux has one source of truth
  	Multiple reducers it can have
 
+Concept of keys
+	
+	React asks you to add keys to your component this is how react understands that the component needs an update or 
+	not. React maintains data-reactid which is equal to key
+	It helps react with its diffing algorithm to determine which children to remove, add, keep, or simply update.
+
  
+ REDUX VS FLUX
+
+ 	The difference between them is Redux doesnt have discrete dispatcher. Your store directly listens the action with a function called reducer with returns a new state always
+ 	Whole app has one state
+ 	App state is immutable
+
+ 	What is reducer?
+ 	Reducers are pure functions they accept current state and returns a new state. They dont store the state of app
+
+ 
+ Why we need REDUX THUNK?
+
+ 	It used to perform async operations when you need to dispatch multiple actions together with the use of middle ware called "applymiddleware()"
+
+ 	eg : const store = createStore(
+		  rootReducer,
+		  applyMiddleware(
+		    thunkMiddleware, // lets us dispatch() functions
+		    loggerMiddleware // neat middleware that logs actions
+		  )
+		)
+	When this middleware is enabled, if you dispatch a function, Redux Thunk middleware will give it  dispatch as an argument.
