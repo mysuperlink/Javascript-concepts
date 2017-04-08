@@ -30,7 +30,7 @@ Hoisting
 	Eg console.log(x === undefined)   // True
 		var x = 1;
 
-		baz()   // it will work
+		baz()   // it will worsk
 		funtion baz(){
 
 		}
@@ -43,4 +43,9 @@ Constants
 	
 	These are immutable their value doesn't change
 
+Time Complexity
+
+	It is depend on: 
+		How many comparisons are made ?
+		How many swaps are made ? [Mostly in sorting]
 
