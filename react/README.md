@@ -136,3 +136,21 @@ How to get all Props?
 
 	<div {...this.props}>   // its called spread params you will get all props defined on component
 	</div>
+
+Why do react shows a warning like "uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)" when input type text value is set?
+
+	if you initially pass undefined or null as the value prop, the component starts life as an "uncontrolled" component. Once you interact with the component, we set a value and react changes it to a "controlled" component, and issues the warning.
+
+	Also if you put value to some text then it makes input as readonly which is called controlled component if you add onChange the it will change to uncontrolled
+
+How to set defaultProps in ES5 and ES6?
+	
+	In ES5 
+		getDefaultProps(){
+			test : "some value"
+		}
+	In ES6
+		ComponentName.defaultProps = {
+			test : "some value"
+		}
+

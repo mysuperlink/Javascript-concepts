@@ -165,3 +165,107 @@ Difference between
 	console.log(test2())  // prints undefined as per behaviour of JS it explicity add semicolon after return
 
 
+What it will alert?
+	var x = 3;
+
+	var foo = {
+	    x: 2,
+	    baz: {
+	        x: 1,
+	        bar: function() {
+	            return this.x;
+	        }
+	    }
+	}
+
+	var go = foo.baz.bar;
+
+	alert(go());   // 3
+	alert(foo.baz.bar());  // 1
+
+
+	var x   = 4,
+    obj = {
+        x: 3,
+        bar: function() {
+            var x = 2;
+            setTimeout(function() {
+                var x = 1;
+                alert(this.x);
+            }, 1000);
+        }
+    };
+	obj.bar();  // 4 
+	// setTimeout() causes javascript to use the global scope
+
+Check type
+
+	var foo = function bar() {}; 
+	alert(typeof bar); // undefined
+
+What value it will alert ?
+
+	var arr = [];
+	arr[0]  = 'a';
+	arr[1]  = 'b';
+	arr.foo = 'c';
+	alert(arr.length);  // it will alert 2
+
+
+	function foo(a) {
+	    arguments[0] = 2;
+	    alert(a);
+	}
+	foo(1);   // it will alert 2 as it changed the argument
+
+
+	function foo(){}
+	delete foo.length;
+	alert(typeof foo.length);   // it will print number because we are checking length
+	alert(typeof foo);   // it will print function
+
+
+	function foo(){}
+	alert(typeof foo.length);   // it will print number because we are checking length
+	alert(typeof foo);   // it will print function
+
+
+	function aaa() {
+	    return
+	    {
+	        test: 1
+	    };
+	}
+	alert(typeof aaa());   // it will alert undefined
+
+	(true + false) > 2 + true;   // False
+
+
+	function bar() {
+	    return foo;
+	    foo = 10;
+	    function foo() {}
+	    var foo = '11';
+	}
+	alert(typeof bar());   // function
+
+	new String("This is a string") instanceof String;  // true
+
+	var myArr = ['foo', 'bar', 'baz'];
+	myArr.length = 0;
+	myArr.push('bin');
+	console.log(myArr);   // ["bin"]
+
+
+	String('Hello') === 'Hello';  // true
+
+	var x = 0;
+	function foo() {
+	    x++;
+	    this.x = x;
+	    return foo;
+	}
+	var bar = new new foo;
+	console.log(bar.x);   // undefined
+
+
