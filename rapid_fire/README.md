@@ -22,7 +22,7 @@ Explain Event Delegation
 
 	})
 
-Explain how "this" in JS
+Explain how "this" works in JS
 	
 this is a keyword in JS. It basically depends upon a function is called.
 
@@ -268,4 +268,31 @@ What value it will alert ?
 	var bar = new new foo;
 	console.log(bar.x);   // undefined
 
+How come true == 1 is true ?
+	
+	Since "==" converts between types to find a match so it true but true === 1 is false 
+
+Some really tricky ones
+
+	var c = {a:1}
+	var m = c;
+
+	c.a =2;
+
+	console.log(m); // {a:2} since the concept of pass by reference worked here 
+
+	var c = {a:1}
+	var m = c;
+
+	delete c.a =2;
+
+	console.log(m); // {} since the concept of pass by reference worked here 
+
+	var a = 10;
+	function x(){
+	  var a = 20;
+	}
+	x();
+
+	console.log(a)  // 10 
 

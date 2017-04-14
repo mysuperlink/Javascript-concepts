@@ -1,4 +1,4 @@
-// Implement a map type functionality and push the elements into new array
+ // Implement a map type functionality and push the elements into new array
 // after multiplying it by 2
 
 // lets defined an array on which newMap will iterate 
@@ -31,7 +31,7 @@ var myIIfe  = (function(){
 
 	var sortAscending = function(){
   		for(var k = 0; k < sort_item.length; k++ ){
-			for(var m = 0; m < sort_item.length; m++){
+			for(var m = 0; m < sort_item.length-1; m++){
 				if(sort_item[m] > sort_item[m + 1]){
 					var temp = sort_item[m];  // 4
 					sort_item[m] = sort_item[m + 1]; // 2
@@ -133,6 +133,21 @@ Array.prototype.newIndexOf = function(arg){
 simpleArray.newIndexOf("A")
 console.log(indexValue);
 
+//OR BETTER WAY
+function indexFoundFn(a){
+  for(var i =0; i<simpleArray.length; i++){
+    if(a == simpleArray[i]){
+      return i;
+    }
+  }
+}
+var indexFound;
+Array.prototype.newIndex = function(arg, arg1){
+  indexFound = arg(arg1);
+}
+
+simpleArray.newIndex(indexFoundFn, 5)
+
 //Find missing elements in array
 var someArray = [2,8,5,0,13,3]
 function findMissingElementInArray(){
@@ -143,6 +158,27 @@ function findMissingElementInArray(){
   // 
 }
 
+// Find the longest matching string 
+var string = "aabbbccdddddeeefff" // dddd is the longest
+var maxCount = 0, stringMatch;
+function perform(){
+  var split = string.split("");
+  for(var i =0; i <split.length; i++){
+    var charCount = 0, stringConcat="";
+    for(var k=0; k<split.length - 1; k++){
+      if(split[i] == split[k]){
+        charCount = charCount + 1
+        stringConcat += split[i]
+      }else{
+      }
+    }
+    if(charCount > maxCount){
+      maxCount = charCount;
+      stringMatch = stringConcat;
+    }
+  }
+}
+perform(string)
 // Largest element in ARRAY....
 var num = someArray[0];
 function largestElemInArray(){
@@ -158,7 +194,6 @@ function largestElemInArray(){
 }
 
 largestElemInArray();
-
 
 
 

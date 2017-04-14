@@ -49,3 +49,11 @@ Time Complexity
 		How many comparisons are made ?
 		How many swaps are made ? [Mostly in sorting]
 
+What is destructuring in JS
+	When you export multiple classes in one file its called destructuring
+	Eg:
+		export class ABC {}
+		export class DEF{}
+
+		import {ABC, DEF} from './filename'; 
+

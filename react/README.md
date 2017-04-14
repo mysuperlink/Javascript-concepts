@@ -58,6 +58,7 @@ React LifeCycle
 
 	shouldComponentUpdate():  is always called before the render method and enables to define if a re-rendering is needed or can be skipped. Obviously this method is never called on initial rendering. A boolean value must be returned.
 	componentWillUpdate() :  gets called as soon as the the shouldComponentUpdate returned true. 
+	render() 
 	componentDidUpdate() : its called after render method 
 
 NOTE : Props are immutable they cant be changed
@@ -109,7 +110,7 @@ Concept of keys
 	It helps react with its diffing algorithm to determine which children to remove, add, keep, or simply update.
 
  
- REDUX VS FLUX
+REDUX VS FLUX
 
  	The difference between them is Redux doesnt have discrete dispatcher. Your store directly listens the action with a function called reducer with returns a new state always
  	Whole app has one state
@@ -119,7 +120,7 @@ Concept of keys
  	Reducers are pure functions they accept current state and returns a new state. They dont store the state of app
 
  
- Why we need REDUX THUNK?
+Why we need REDUX THUNK?
 
  	It used to perform async operations when you need to dispatch multiple actions together with the use of middle ware called "applymiddleware()"
 
@@ -153,4 +154,9 @@ How to set defaultProps in ES5 and ES6?
 		ComponentName.defaultProps = {
 			test : "some value"
 		}
+
+How to set multiple inline styles for an element?
+	import {style1, style2} from './style.js';
+
+	<div style={Object.assign({}, style1, style)} 
 
