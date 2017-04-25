@@ -196,4 +196,10 @@ function largestElemInArray(){
 largestElemInArray();
 
 
+// Loop over dynamic keys which you dont know how many it can be
+  var a = {a: {b: {c:{
+
+  }}}}
+
+
 

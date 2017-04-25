@@ -30,11 +30,10 @@ console.log(myCar.color)		// Blue
 // Example
 var a = [1,2,3];
 console.log(a.constructor())  // Array
-//a is the instance of Array
+
 
 var b = “abc”;
 console.log(b.constructor())  // String
-//b is the instance of String
 
 //Note : Check if the object is an array or string or number, we can check via instanceOf 
 

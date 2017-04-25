@@ -53,6 +53,7 @@ React LifeCycle
 	componentWillMount() : this method is called before render 
 	render() : renders the dom
 	componentDidMount() : this is called after render
+	componentWillUnMount() // this is called when unmounting a component
 	
 	State or prop changes will trigger number of methods. [VERY IMP]
 

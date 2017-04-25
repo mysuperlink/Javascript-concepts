@@ -43,6 +43,7 @@ var mySonCar = myCar.showColor.bind(myCar)
 console.log(mySonCar('Red'))
 
 
+
 // Call 
 // call will call that function instant first paramter as the reference object and 
 // second fn param if required

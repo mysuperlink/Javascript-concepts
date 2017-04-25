@@ -271,6 +271,7 @@ What value it will alert ?
 How come true == 1 is true ?
 	
 	Since "==" converts between types to find a match so it true but true === 1 is false 
+	Remember the CONVERSION IS FROM BOOLEAN TO NUMBER
 
 Some really tricky ones
 
