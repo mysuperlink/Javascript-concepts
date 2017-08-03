@@ -1,6 +1,6 @@
  // Implement a map type functionality and push the elements into new array
 // after multiplying it by 2
-
+Go to geekforgeeks for best questions
 // lets defined an array on which newMap will iterate 
 
 var no_cars = ["3","5","6","8"]
@@ -194,6 +194,25 @@ function largestElemInArray(){
 }
 
 largestElemInArray();
+
+// Program for array rotation by 2;
+
+// Let us take the same example arr[] = [1, 2, 3, 4, 5, 6, 7], d = 2
+// Rotate arr[] by one 2 times
+// We get [2, 3, 4, 5, 6, 7, 1] after first rotation and [ 3, 4, 5, 6, 7, 1, 2] after second rotation.
+
+Array.prototype.rotateArray = function(){
+  console.log(this);
+  let newArr = [];
+  let lastIdx = this.length - 1;
+  if(this instanceof Array){
+    for(let i = 0; i < 2; i++){
+
+    }
+  }
+}
+var arrayData = [1,2,3,4,5,6,7];
+arrayData.rotateArray();
 
 
 // Loop over dynamic keys which you dont know how many it can be

@@ -20,7 +20,28 @@ Explain Event Delegation
 	on body and it binds click to the ul
 	$(body).on('click', '#parent', function(){
 
-	})
+	});
+
+Explain difference between proto vs prototype
+	Prototype is the property of the constructor function.
+	_proto_ is the internal property of any object pointing to its prototype.
+
+	Eg: function Point(x, y) {
+	    this.x = x;
+	    this.y = y;
+	}
+	Note :Point.prototype property is created internally once you declare above function
+	Note : Every instance created using new has a __proto__ property which points to its prototype
+	var myPoint = new Point();
+
+	// the following are all true
+	myPoint.__proto__ == Point.prototype
+	console.log(Point.prototype)  // myPoint.__proto__
+	myPoint.__proto__.__proto__ == Object.prototype
+	myPoint instanceof Point;
+	myPoint instanceof Object;
+
+	Note : Here Point is a constructor function, it builds an object (data structure) procedurally. myPoint is an object constructed by Point() so Point.prototype gets saved to myPoint.__proto__ at that time.
 
 Explain how "this" works in JS
 	

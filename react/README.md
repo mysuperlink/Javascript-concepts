@@ -14,6 +14,8 @@ imperative
 	FLux architecture
 	Redux
 	Concept of KEYS
+	HOT MODULE REPLACEc  // live reloading
+	Higher order components 
 
 
 How does Virtual DOM works?
@@ -138,6 +140,33 @@ How to get all Props?
 
 	<div {...this.props}>   // its called spread params you will get all props defined on component
 	</div>
+
+Higher Order Components:
+	These are functions which accepts component as argument and return react component
+
+	Eg : import React ,{Component} from 'react';
+
+	const LoadHOC = (WrappedComponent)=>{
+		return classs LoadHoc extends Component {
+			render(){
+				return this.props.abc.length === 0 ? <div>test</div> ? <WrappedComponent {...this.props} />
+			}
+		}
+	}
+	export default LoadHOC;
+
+
+	HOw to use it ?
+	import LoadHOC from './LoadHOC';
+
+	class SomeComp extends React.Component{
+		render(){
+			return <div>A</div>
+		}
+	}
+
+	export default LoadHoc(SomeComp);
+
 
 Why do react shows a warning like "uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)" when input type text value is set?
 
