@@ -43,6 +43,38 @@ Explain difference between proto vs prototype
 
 	Note : Here Point is a constructor function, it builds an object (data structure) procedurally. myPoint is an object constructed by Point() so Point.prototype gets saved to myPoint.__proto__ at that time.
 
+Explain typeof instanceof and constructor ?
+	Type of: 
+	typeof is unary operator like ! operator. It returns a string 
+	typeof 3  // number
+	typeof "aatif"  // string
+	typeof {} // object
+	typeof null // object 
+	typeof function () {};  // function
+	typeof // object
+
+	Constructor
+	Constructor is an property available on all object's prototype. 
+	Eg : [].constructor returns the Array  
+		 ({}).constructor returns function
+
+	function Person(name) {
+  		this.name = name;
+	}
+
+	var dave = new Person('Dave');
+	dave.constructor === Person; //true
+
+	instanceof
+	instanceof is a binary operator. So, to continue the above example:
+
+	dave instanceof Person; //true
+
+	Note : The difference between instanceof and the constructor property is that instanceof inspects the object’s prototype chain. So, going back to our friend dave again:
+
+	dave instanceof Object; //true
+	This is because Person.prototype is an object, so Object is in dave‘s prototype chain, therefore dave is an instance of Object.
+
 Explain how "this" works in JS
 	
 this is a keyword in JS. It basically depends upon a function is called.
@@ -98,6 +130,55 @@ Ways to define a global variable
 		console.log(k);  // 1
 	}
 	inc()  
+Explain Generators in Javascript?
+	
+	Generators are functions* which can be exited and re-entered with last saved context.
+	Generators functions returns generator object. Generator object is an iterable protocol
+	Syntax : 
+	function* gen(){
+		yeild 1;
+		yeild 2;
+	}
+	var g = gen();
+
+	Generator.prototype.next(): is a method returns a value yeilded by yeild expression.
+	[Note : yeild is used to pause and resume generator function. Note if a return statement is reached it terminates the generator execution]
+
+	Examples:
+
+	function* exp(){
+		yeild 1;
+		yeild "Hi";
+		return "abc";
+		yeild "a";
+	}
+	var m = exp();
+	console.log(m.next()) // 1 {value : 1 done: false}
+	console.log(m.next()) // 1 {value : Hi done: true}
+	console.log(m.next()) // 1 {value : undefined done: true}
+
+	// done : false means when generator fn terminates
+
+
+	function* anotherGenerator(i) {
+	  yield i + 1;
+	  yield i + 2;
+	  yield i + 3;
+	}
+
+	function* generator(i) {
+	  yield i;
+	  yield* anotherGenerator(i);
+	  yield i + 10;
+	}
+
+	var gen = generator(10);
+
+	console.log(gen.next().value); // 10
+	console.log(gen.next().value); // 11
+	console.log(gen.next().value); // 12
+	console.log(gen.next().value); // 13
+	console.log(gen.next().value); // 20
 
 Concept of Hoisting in JS
 

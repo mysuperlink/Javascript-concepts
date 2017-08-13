@@ -206,13 +206,47 @@ Array.prototype.rotateArray = function(){
   let newArr = [];
   let lastIdx = this.length - 1;
   if(this instanceof Array){
+    let arr = this.length;
     for(let i = 0; i < 2; i++){
+
+      for(let i = 0; i< arr.length; i++){
+        let temp = this.length[0]
+        newArr.push(this.length[i+1])
+      }
+      arr = newArr;
 
     }
   }
 }
 var arrayData = [1,2,3,4,5,6,7];
 arrayData.rotateArray();
+
+// Given an array of integersf find out the numbers which is equal to the sum X
+// First of sort array in ascending order.
+
+var c = [1,4,5,6,7];
+var sum = 8;
+var p1 = 0;
+var p2 = c.length - 1;
+function test(){
+for(let i = 0; i<c.length; i++){
+  
+  if(c[p1] + c[p2] == sum){
+    console.log(p1,p2);
+    break;
+  }else{
+    if(c[p1]+ c[p2] < sum){
+      p1 = i+1;
+    }else if(c[p1] + c[p2] > sum){
+      p2 = p2 - 1;
+    }
+  }
+
+}
+ 
+}
+test();
+
 
 
 // Loop over dynamic keys which you dont know how many it can be

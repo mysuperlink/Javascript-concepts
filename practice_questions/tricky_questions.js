@@ -100,4 +100,10 @@ let say = sayHello();
 
 console.log(say.next());
 
+// write a function to capitalize fist letter of string
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+"hello world".capitalize();  =>  "Hello world" 
 

@@ -167,6 +167,20 @@ Higher Order Components:
 
 	export default LoadHoc(SomeComp);
 
+Difference between bind in constructor vs render()
+	
+	bind in render has issue everytime render happens it created an instance of the function which can lead to many instances
+	bind in constructor is better just it has one issue which might not update on hot reloading you bind a new method wont reflect in hot reload as hot reload doesnt call constructor function
+
+What does mapStateToProps and mapDispacthToProps do ?
+	mapStateToProps takes the redux store state 
+	mapDispacthToProps dispatch action it returns props
+
+Why is connect ?
+
+	React Redux connect() generates an intermediate component: that's why you receive data as this.props, and not as this.state.
+	connect is a curried function, which means it return a function. This returned function takes WrappedComponent as input.
+	Connect is a higer order component.
 
 Why do react shows a warning like "uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)" when input type text value is set?
 

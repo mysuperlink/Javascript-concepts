@@ -34,6 +34,7 @@ Hoisting
 		funtion baz(){
 
 		}
+		
  		baz()    // baz is not a function  since function expression is hoisted 
  		var baz = function(){
 
