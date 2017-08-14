@@ -91,14 +91,62 @@ for(let word of words.keys())
 //Generators in ES6 
 
 // these functions are defined with * 
-// they return an iterator and use next()
-// method to call f(n)
+// they can be entered and exited at any time but saves the context
+// it has a keyword called yeild which is used to pause and resume the fn
+
 function* sayHello(){
   console.log('hey Generator')
+  yield "Hello";
+  yield "hello1";
+  yield* callApi();
+  return "abc";
 }
 let say = sayHello();
 
-console.log(say.next());
+console.log(say.next()); // hello  -> returns object {value :hello, done:false }
+console.log(say.next()) // hello1 -> returns object {value :hello1, done:false }
+console.log(say.next()) // ->  returns object {value :data, done:true } // since returns terminates
+//generator
+
+
+function* calC(i){
+  let x = yield + i;
+  console.log(x);
+  let y = yield + i;
+  return i;
+}
+
+var say = calC(2);
+console.log(say.next()); // ->{value : 2 , done:false}
+console.log(say.next()); // ->{value : 2 , done:false}
+console.log(say.next()); // -> {value : 2, done : true}
+
+
+//Generators are not constructable
+function* f() {}
+var obj = new f; // throws "TypeError: f is not a constructor"
+
+
+//Reverse a Linked List in groups of given size
+
+var a = "abcdefghi";
+var actualsize = 3;
+let splitSt = a.split("");
+let size = actualsize;
+let b="";
+let incV = 0;
+for(let i = 0; i < splitSt.length; i++){
+ 
+  if(incV == actualsize){
+    size = 3 + incV;
+    actualsize = size;
+  }
+  b+=splitSt[size - 1];
+  incV = incV +1
+  size = size - 1;
+}
+
+
 
 // write a function to capitalize fist letter of string
 String.prototype.capitalize = function() {

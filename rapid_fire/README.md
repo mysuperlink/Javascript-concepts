@@ -180,6 +180,11 @@ Explain Generators in Javascript?
 	console.log(gen.next().value); // 13
 	console.log(gen.next().value); // 20
 
+
+	//Generators are not constructable
+	function* f() {}
+	var obj = new f; // throws "TypeError: f is not a constructor"
+	
 Concept of Hoisting in JS
 
 	var name = "ab";
