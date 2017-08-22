@@ -22,6 +22,10 @@ Explain Event Delegation
 
 	});
 
+Event Bubbling
+	Its the procedure how our event travels from child to parent node. It can be stopped by event.stopPropogation();
+
+
 Explain difference between proto vs prototype
 	Prototype is the property of the constructor function.
 	_proto_ is the internal property of any object pointing to its prototype.

@@ -221,7 +221,7 @@ Array.prototype.rotateArray = function(){
 var arrayData = [1,2,3,4,5,6,7];
 arrayData.rotateArray();
 
-// Given an array of integersf find out the numbers which is equal to the sum X
+// Given an array of integers to find out the numbers which is equal to the sum X
 // First of sort array in ascending order.
 
 var c = [1,4,5,6,7];
