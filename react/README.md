@@ -180,7 +180,7 @@ Why is connect ?
 
 	React Redux connect() generates an intermediate component: that's why you receive data as this.props, and not as this.state.
 	connect is a curried function, which means it return a function. This returned function takes WrappedComponent as input.
-	Connect is a higer order component.
+	Connect is a higher order component.
 
 Why do react shows a warning like "uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa)" when input type text value is set?
 
