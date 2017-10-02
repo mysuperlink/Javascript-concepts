@@ -10,7 +10,7 @@ function multiply(i){
 }
 var no_cars_new  = [];
 Array.prototype.newMap = function(arg){
-	//console.log();
+	//console.log(this) == arg;
 	for(var i = 0; i < no_cars.length; i++){
 		no_cars_new.push(arg(no_cars[i]));
 	}
@@ -26,48 +26,35 @@ console.log(no_cars_new);
 
 // BUBLE SORT [Ascending array] in one array with module patten example or closure
 // Sort an Array ascending order in IIFE
-var myIIfe  = (function(){
-	var sort_item = ["4", "2", "5", "1"];
+var c = [5,7,2,9,3];
 
-	var sortAscending = function(){
-  		for(var k = 0; k < sort_item.length; k++ ){
-			for(var m = 0; m < sort_item.length-1; m++){
-				if(sort_item[m] > sort_item[m + 1]){
-					var temp = sort_item[m];  // 4
-					sort_item[m] = sort_item[m + 1]; // 2
-					sort_item[m+1] = temp;
-				}
-				
-			}
-		}
-      	return sort_item;
-	}
-    return {
-      accessKey : sortAscending
+//ascending order
+var newAr = null;
+Array.prototype.ascendingMeth = function(fn){
+  newAr =  fn(this); 
+  console.log(newAr);
+}
+
+function ascendOp(d){
+  for(let p = 0; p <d.length; p++){
+  for(let i = 0; i < d.length; i++){
+    let cur = d[i];
+    let next  = d[i+1];
+    
+    if(d[i] > d[i+1]){
+      d[i+1] = cur;
+      d[i] = next;
     }
-})()
-console.log(myIIfe.accessKey()); // [1,2,4,5]
+  }
+  }
+  return d;
+}
+c.ascendingMeth(ascendOp);
 
 
 // Ascending order
-var someArray = [2,8,5,0,13,3]
-function ascendingSort(){
-  for(var i =0; i<someArray.length; i++){
-    for(var k=0; k <someArray.length; k++){
-       if(someArray[i] > someArray[k]){
-         //num = someArray[k];
-         var temp = someArray[i]
-         someArray[i] = someArray[k];
-         someArray[k] = temp;
-       }
-    }
-   
-    
-  }
-}
+// Reverse the sign for above methods
 
-ascendingSort();
-console.log(someArray)
 // Find second largest element in array
 console.log(someArray[1])
 

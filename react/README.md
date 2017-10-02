@@ -126,6 +126,7 @@ REDUX VS FLUX
 Why we need REDUX THUNK?
 
  	It used to perform async operations when you need to dispatch multiple actions together with the use of middle ware called "applymiddleware()"
+ 	mainly used to decouple ajax calls
 
  	eg : const store = createStore(
 		  rootReducer,

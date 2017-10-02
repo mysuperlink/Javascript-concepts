@@ -21,8 +21,8 @@ How does the browser rendering engine work?
     Paint
     When we get to the paint stage, the browser has to pick up the layout result, and paint the pixels to the screen
 
-
-    Make all Javascript async
+    What is critical rendering path
+    Its a process which can block rendering of UI so keeping  all Javascript async can can let go initial rendering faster.
     Async scripts don’t block DOM construction and don’t have the need to wait for the CSSOM event, this way your critical rendering path stays free from Javascript interference
     
 # Javascript-concepts
@@ -160,6 +160,12 @@ Template literals
     `Hello ${name}, the following expression is equal to four : ${2+2}`;
     //Hello Nick, the following expression is equal to four: 4
 
+
+Object.assign
+
+    Its the feature of ES6. assign is a static for object which returns a new object
+    Object.assign({}, {a:1}, {b:1});
+    first param is target object
 /************************************************************************************************************/
 Time Complexity
 

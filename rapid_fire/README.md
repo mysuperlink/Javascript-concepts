@@ -1,6 +1,9 @@
 Explain Event Delegation
 	
-	Attaching an event to the parent. lets say you have list of li elements
+	Attaching an event to the parent. 
+	Event delegation allows you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. That event listener analyzes bubbled events to find a match on child elements
+	
+	lets say you have list of li elements
 	<ul id='parent'>
 		<li>A</li>
 		<li>B</li>
@@ -21,6 +24,17 @@ Explain Event Delegation
 	$(body).on('click', '#parent', function(){
 
 	});
+
+Chaining in JQuery
+
+	Chaining in Jquery is used to add method on a selected element
+	Without Chaining
+	$(div).css();
+	$(div).click();
+
+	With chaining
+	$(div).css().click();
+
 
 Event Bubbling
 	Its the procedure how our event travels from child to parent node. It can be stopped by event.stopPropogation();
@@ -266,7 +280,7 @@ QUICKY
 How JSONP works for CORS
 
 	its actually a hack browser sends request to foreign server with a tag <script>. The client creates a 
-	script tag and put URL on it with an callbak==xxxx the browser thinks its just some javascript file
+	script tag and put URL on it with an callback==xxxx the browser thinks its just some javascript file
 	wants to download and allows data communication
 
 	example
