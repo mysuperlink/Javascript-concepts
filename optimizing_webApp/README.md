@@ -45,3 +45,12 @@ CSS Optimization
     The last declaration is only applied when the page is being printed so it is not render blocking when the page is first loaded in the browser.
 
 
+GZIP Compression
+
+The browser sends a header telling the server it accepts compressed content (gzip and deflate are two compression schemes):  
+Accept-Encoding: gzip, deflate
+
+The server sends a response if the content is actually compressed:  Content-Encoding: gzip
+
+If the server doesn’t send the content-encoding response header, it means the file is not compressed (the default on many servers). The “Accept-encoding” header is just a request by the browser, not a demand.
+

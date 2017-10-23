@@ -213,7 +213,7 @@ arrayData.rotateArray();
 // First of sort array in ascending order.
 
 var c = [1,4,5,6,7];
-var sum = 8;
+var sum = 6;
 var p1 = 0;
 var p2 = c.length - 1;
 function test(){
@@ -233,7 +233,7 @@ for(let i = 0; i<c.length; i++){
 }
  
 }
-test();
+test(); 
 
 
 

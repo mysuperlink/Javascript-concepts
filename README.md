@@ -77,6 +77,8 @@ Constants
     const x = 1;
     const x = 2; // raises an error re-declaration is not allowed
 
+    cosnt pi; // raises an error with you const you have to define the value 
+    pi = 1;
     const myVar = "Nick";
     myVar = "John" // raises an error, reassignment is not allowed
 
@@ -167,6 +169,32 @@ Object.assign
     Object.assign({}, {a:1}, {b:1});
     first param is target object
 /************************************************************************************************************/
+
+Extend Class in JS ES5
+
+    function test(a){
+      this.abc = a;
+    }
+    test.prototype.getD = function(){
+      console.log('1')
+    }
+
+
+    function newChild(){
+      test.call(this);
+    }
+    newChild.prototype = Object.create(test.prototype);
+
+    newChild.prototype.getF = function(){
+      console.log('12');
+    }
+
+    var b = new newChild();
+
+    b.getD(); // 1
+    b.getF()  // 12
+
+
 Time Complexity
 
     It is depend on: 
