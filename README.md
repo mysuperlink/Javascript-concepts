@@ -195,6 +195,62 @@ Extend Class in JS ES5
     b.getF()  // 12
 
 
+WINDOW vs DOCUMENT
+
+    Window is the root level element in web page
+    All global variable are defined on window object like alert(), confirm()
+    Also properties like document, location, window  are defined at window object
+
+
+    Document is the direct child of window object. You can access it via window.document or document.
+    document object has many use­ful meth­ods defined on it.
+    For exam­ple, document.getElementById(), document.getElementByTagName(), document.createElement(), document.querySelector() and many more
+
+window.onload vs document.onload
+
+    window.onload will fire when the entire page is loaded including its content(like images, css, scripts);
+
+    document.onload is fired when the DOM is ready which can be prior to images and other exter­nal con­tent is loaded
+
+    In gen­eral, document.onload event is fired before the window.onload
+
+ASYNC VS DEFER Scripts
+
+    Lets start with a reg­u­lar script tag hav­ing no attributes.
+
+    <script src="myfile.js"></script>
+    When the browser comes across the above line in your markup, this is what happens.
+
+    Pause pars­ing the document.
+    Make a request to fetch the file.
+    Exe­cute the script after it has been downloaded.
+    Resume pars­ing the document.
+
+
+    Async
+
+    When you add the async attribute to your script tag, the fol­low­ing will happen.
+
+    <script src="myfile1.js" async></script>
+    <script src="myfile2.js" async></script>
+    Make par­al­lel requests to fetch the files.
+    Con­tinue pars­ing the doc­u­ment as if it was never interrupted.
+    Exe­cute the indi­vid­ual scripts [the moment the files are downloaded].
+
+
+    Defer
+
+    Defer is very sim­i­lar to async with one major dif­fer­er­ence. Here’s what hap­pens when a browser encoun­ters a script with the defer attribute.
+
+    <script src="myfile1.js" defer></script>
+    <script src="myfile2.js" defer></script>
+    Make par­al­lel requests to fetch the indi­vid­ual files.
+    Con­tinue pars­ing the doc­u­ment as if it was never interrupted.
+    Fin­ish pars­ing the doc­u­ment even if the script files have downloaded.
+    Exe­cute each script in the order they were encoun­tered in the document. [Main difference]
+    As you can tell, defer is pretty much what you want to do in your files. How­ever, due to lim­ited browser sup­port, its not a viable option at the time of writing.
+
+
 Time Complexity
 
     It is depend on: 
