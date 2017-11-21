@@ -9,7 +9,7 @@ How does the browser rendering engine work?
     the browser has to go through 4 steps:
     1. Convert bytes to characters
     2. Identify tokens
-    3. Convert tokens to nodes
+    3. Convert tokens to nodes // <head> <body> are generated
     4. Build DOM Tree
 
     The Render Tree
@@ -249,6 +249,29 @@ ASYNC VS DEFER Scripts
     Fin­ish pars­ing the doc­u­ment even if the script files have downloaded.
     Exe­cute each script in the order they were encoun­tered in the document. [Main difference]
     As you can tell, defer is pretty much what you want to do in your files. How­ever, due to lim­ited browser sup­port, its not a viable option at the time of writing.
+
+querySelector vs getElementById
+    The query selector methods fetch a static nodeList which was formed at the time of execution. The getelementById or class methods fetch a live nodeList. Fetching a live nodeList is much faster and more efficient.
+
+    Mean­ing if you add or remove any ele­ment from the DOM the node list will update
+
+Shadow DOM
+
+    Shadow DOM provides encapsulation for DOM and CSS in a Web Component. Shadow DOM makes it so these things remain separate from the DOM of the main document. You can also use Shadow DOM by itself, outside of a web component.
+
+    Shadow DOM must always be attached to an existing element. The element can be either a literal element in an HTML file, or an element created in the DOM by scripting. It can be a native element like <div> or <p>, or a custom element like <my-element>. You attach shadow DOM using Element.attachShadow() like in this example:
+
+    <html>
+      <head></head>
+      <body>
+        <p id="hostElement"></p>
+        <script>
+          // create shadow DOM on the <p> element above
+          var shadow = document.querySelector('#hostElement')
+            .attachShadow({mode: 'open'});
+        </script>
+      </body>
+    </html>
 
 
 Time Complexity

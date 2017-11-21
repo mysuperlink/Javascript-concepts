@@ -133,6 +133,19 @@ Primary we have two context for this.
 
 	})
 
+Difference b/w if(something) or if(x === true)
+	If(x) it means you are checking the value it can be non-zero, array, object and postive val
+	if(x === true) you are checking boolean type which x should be boolean and equals to true
+
+	var x = 0;
+	console.log(x == true) // false
+	console.log(x == false) // true
+
+	var y = 0
+	console.log(y == false ) // true
+	console.log(y === 0) // false
+
+
 What will the value for the function when we call
 	
 	function abc(){
