@@ -63,15 +63,16 @@ Explain difference between proto vs prototype
 
 Explain typeof instanceof and constructor ?
 	Type of: 
-	typeof is unary operator like ! operator. It returns a string 
+	typeof is unary operator like ! operator. It returns a STRING 
 	typeof 3  // number
 	typeof "aatif"  // string
 	typeof {} // object
-	typeof null // object 
+	typeof null // object // Since its a bug in JS as null is primitive it should return null
 	typeof function () {};  // function
-	typeof // object
+	typeof // Raise an error
 
-	Constructor
+
+Constructor
 	Constructor is an property available on all object's prototype. 
 	Eg : [].constructor returns the Array  
 		 ({}).constructor returns function
@@ -82,6 +83,7 @@ Explain typeof instanceof and constructor ?
 
 	var dave = new Person('Dave');
 	dave.constructor === Person; //true
+	console.log(Person.constructor) // function Function()
 
 	instanceof
 	instanceof is a binary operator. So, to continue the above example:
@@ -90,7 +92,9 @@ Explain typeof instanceof and constructor ?
 
 	Note : The difference between instanceof and the constructor property is that instanceof inspects the object’s prototype chain. So, going back to our friend dave again:
 
-	dave instanceof Object; //true
+	dave instanceof Object; //true, 
+	Explain above in proto vs prototype dave.__proto__.__proto__ == Object.prototype
+	
 	This is because Person.prototype is an object, so Object is in dave‘s prototype chain, therefore dave is an instance of Object.
 
 Explain how "this" works in JS
@@ -111,7 +115,7 @@ Primary we have two context for this.
 	function f1(){
 		return this
 	}
-	console.log(f1())  // document
+	console.log(f1())  // document since we have return document	
 
 	but if the function is in the strict mode
 
@@ -163,7 +167,7 @@ Ways to define a global variable
 	inc()  
 Explain Generators in Javascript?
 	
-	Generators are functions* which can be exited and re-entered with last saved context.
+	Generators are functions* which can be exited and re-entered with last saved context (or last yeild used).
 	Generators functions returns generator object. Generator object is an iterable protocol
 	Syntax : 
 	function* gen(){
@@ -282,10 +286,13 @@ QUICKY
 	console.log(null) 			//will print null
 	console.log(undefined)		// will print undefined
 	null == undefined  			// will be true their value isnt same but they both mean nothing
-	typeof null					// object
+	typeof null					// "object" SINCE THIS IS A BUG IN JS AS NULL IS PRIMITIVE IT SHUD BE NULL (typeof)
 	typeof undefined 			// undefined
 	null === undefined 			// false
-	typeof NaN					// number
+	typeof NaN					// "number"
+	typeof(undefined)           // "undefined"
+	typeof typeof(undefined)    // "string"  since you are checking the typeof undefined which will return "undefined" (string) so typeof "undefined" equals string
+	typeof typeof               // RAISES an error you cant check this 
 	var a = 2, b = 3				// a = 3 also b = 3
 	var y = 1, x = y = typeof x 	// value of x will be undefined since type of x is undefined
 	+'dude' 					// NaN

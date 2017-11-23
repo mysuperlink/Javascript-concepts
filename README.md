@@ -99,7 +99,7 @@ let
     they cant be re-declared within same scope
 
     console.log(myVar) // raises a ReferenceError !
-    let myVar = 2; // hoisting concept doesnt work
+    let myVar = 2; // HOISTING concept doesnt work
 
 
 Arrow function vs Function definition (normal)
@@ -174,6 +174,7 @@ Extend Class in JS ES5
 
     function test(a){
       this.abc = a;
+      this.def = "hello"
     }
     test.prototype.getD = function(){
       console.log('1')
@@ -181,7 +182,12 @@ Extend Class in JS ES5
 
 
     function newChild(){
-      test.call(this);
+      test.call(this); // WE USED CALL HERE TO ACCESS VALUES OF test functon FOR "abc" and "def"
+                       // IF we remove this we can only access getD fn [it will call abc , def properties here]
+
+        OR 
+       // if we want to set value for abc we should use 
+       //test.call(this, "12");
     }
     newChild.prototype = Object.create(test.prototype);
 
@@ -190,6 +196,8 @@ Extend Class in JS ES5
     }
 
     var b = new newChild();
+    console.log(b) // it will print object b : { abc : undefined, def:"hello", getD : function(), getF :func()}
+    since abc == undefined if we want to give values we should use test.call(this, "12");
 
     b.getD(); // 1
     b.getF()  // 12
@@ -280,8 +288,8 @@ Time Complexity
         How many comparisons are made ?
         How many swaps are made ? [Mostly in sorting]
 
-What is destructuring in JS
-    When you export multiple classes in one file its called destructuring
+What is export default vs export name in JS
+    When you export multiple classes in one file its called export name
     Eg:
         export class ABC {}
         export class DEF{}
