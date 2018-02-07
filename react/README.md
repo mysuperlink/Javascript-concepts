@@ -28,6 +28,53 @@ How does Virtual DOM works?
 
 	Vdom is the exact copy of html dom. It allows react to do its computations and checks the diff and update particular node of the dom.
 
+How to Integrate React and Redux Without react-redux?
+
+	import store from './store'
+	import { Component } from 'react'
+	class MyComponent extends Component {
+	  	constructor() {
+	    	super();
+	    	this.state = { storeState: store.getState() };
+	 	}
+	 	componentDidMount() {
+		    this.unsubscribe = store.subscribe(() => {
+		      this.setState({ storeState: store.getState() });
+		    });
+  		}
+	 	componentWillUnmount() {
+    		this.unsubscribe();
+  		}
+	}
+
+Write Your Own React-Redux Connect or Higher Order Components
+	
+	function myConnect (mapState, mapDispatch) {
+		return function(WrappedComponent) {
+			return class WrapperComponent extends Component {
+				constructor(props){
+					super(props)
+					this.state = { storeState: store.getState() };
+				}
+				render(){
+					const newProps = Object.assign(
+			          {},
+			          mapStateToProps(this.state.storeState, this.props),
+			          // If you aren't intimately familiar with the this keyword,
+			          // it's okay if you don't understand why we use bind here
+			          mapDispatchToProps(store.dispatch.bind(this))
+			        );
+					return <WrappedComponent {...newProps}/>
+				}
+			}
+		}
+	}
+	myConnect(mapStateToProps, mapDispatch)(Test);
+	More details https://nickdrane.com/write-your-own-redux-connect/
+
+
+
+	
 
 ReactELement vs ReactComponent
 	

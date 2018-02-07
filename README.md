@@ -1,3 +1,4 @@
+https://docs.google.com/spreadsheets/d/1aMf6I6U1EQq6lIMADEa5gd_wqMRGpSStHtt2wcWvg3A/edit#gid=0
 How does the browser rendering engine work?
     1. DOM
     2. Css object model (CSSOM) // Blocked
@@ -170,6 +171,34 @@ Object.assign
     first param is target object
 /************************************************************************************************************/
 
+Write a debounce function
+Debounce function is a function which will limit the rate at which function is called which helps in broswer 
+performance like when you scroll and call a fucntion.
+Its a function which will take function as a paramter and time when to call
+
+    function debounce(func, wait, immediate){
+        let timeout;
+
+        return function() {
+            if(immediate && !timeout){
+                func.apply(this, args)
+            }
+            clearTimeout(timeout)
+
+            timeout = setTimeout(()=>{
+                timeout = null
+                if(!immediate) {
+                    func.apply(this, args)
+                }
+            },wait);
+        }
+    }
+    var makeUseOfDebounce = debounce(()=>{
+        console.log("CV")
+    }, 250);
+
+
+
 Extend Class in JS ES5
 
     function test(a){
@@ -201,6 +230,12 @@ Extend Class in JS ES5
 
     b.getD(); // 1
     b.getF()  // 12
+
+JSON vs Javascript object
+
+Json is data interchange format which can be representation of ordered list or unodered map
+JsObject is type related to Javascript 
+
 
 
 WINDOW vs DOCUMENT
