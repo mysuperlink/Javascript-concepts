@@ -93,6 +93,7 @@ Constructor
 	Note : The difference between instanceof and the constructor property is that instanceof inspects the object’s prototype chain. So, going back to our friend dave again:
 
 	dave instanceof Object; //true, 
+	dave.constructor == Object // false
 	Explain above in proto vs prototype dave.__proto__.__proto__ == Object.prototype
 	
 	This is because Person.prototype is an object, so Object is in dave‘s prototype chain, therefore dave is an instance of Object.
@@ -100,6 +101,27 @@ Constructor
 Explain how "this" works in JS
 	
 this is a keyword in JS. It basically depends upon a function is called.
+
+What the heck is Event loop?
+https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=948s
+Event loop has three major components
+   - Stack 
+   - WebApis // all set timeout and api call move to this component after stack
+   - Task Que 
+
+   	console.log("hi");
+
+   	setTimeout(()=>{
+   		console.log("hi timeout");
+	}, 5000);
+	console.log("done");
+
+	Event loop works as Hi will go in stack and gets printed
+	Event loop will pick setTimeout sends it to webApis and and after 5 second then moves it to taskQue and doesnt execute
+	Event loop will print done
+	and then will print HI timeout
+
+
 
 Primary we have two context for this.
 
@@ -150,12 +172,128 @@ Difference b/w if(something) or if(x === true)
 	console.log(y === 0) // false
 
 
+Write an implementation of a function `value` which returns the value of the inner most function.
+var innerPeace = function() {
+  return function() {
+    return function() {
+      return function() {
+        return function() {
+          return function() {
+            return function() {
+              return function() {
+                return function() {
+                  return '42';
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+};
+var returnedVal = innerPeace();
+checkVal(returnedVal());
+
+function checkVal (arg) {
+  if(typeof arg === "function") {
+    checkVal(arg())
+  }else{
+    console.log(arg)
+  }
+}
+
+Iterate through object
+
+var inputObj = {
+        'name': 'jane',
+        'last_name': 'doe',
+        'profession': 'engineer',
+        'characteristics': {
+                'intelligent': true,
+                'punctual': false,
+                'experience': {
+                        '2012': 'college passout',
+                        '2014': 'mba passout',
+                        '2016': 'employed'
+                }
+        }
+};
+var flattenObject = function(ob) {
+	var toReturn = {};
+	
+	for (var i in ob) {
+		if (!ob.hasOwnProperty(i)) continue;
+		
+		if ((typeof ob[i]) == 'object') {
+			var flatObject = flattenObject(ob[i]);
+			for (var x in flatObject) {
+				if (!flatObject.hasOwnProperty(x)) continue;
+				
+				toReturn[i + '.' + x] = flatObject[x];
+			}
+		} else {
+			toReturn[i] = ob[i];
+		}
+	}
+	return toReturn;
+};
+
+var flatNewObj = flattenObject(inputObj);
+console.log(flatNewObj);
+
+Execute a function called `sum` like so:
+
+function sum(a, b) {
+ console.log('Sum is: ', a + b);
+}
+
+Now you should be able to execute: 
+sum.callAfter(5000, 8, 9);
+
+function sum (a,b) {
+    console.log(a+b);
+}
+Function.prototype.callAfter = function (time,a,b) {
+    setTimeout(()=>{
+        this(a,b);
+    },time)
+}
+
+sum.callAfter(2000,4,5);
+
+
+
 What will the value for the function when we call
 	
 	function abc(){
 		var c = 1;
 	}
 	console.log(abc())    // undefined as its not returning anything
+
+Promises 
+ Promises in javascript are the function which is used to perform aysnce operations and which accepts two params resolve and reject
+
+	var promise1 = new Promise(function(resolve, reject) {
+	    setTimeout(function(){
+	      console.log("1");
+	      resolve()
+	    }, 500);
+	});
+
+	var promise2 = new Promise(function(resolve, reject) {
+	    setTimeout(function(){
+	      console.log("2")
+	      resolve()
+	    }, 200);
+	});
+
+	Promise.all([promise1, promise2]).then(function(value) {
+	  console.log("gg");
+	});
+
+	//Output -> 2,1,gg (all will handle multiple promises)
+
 
 Ways to define a global variable
 	
@@ -244,16 +382,62 @@ Closure
 
 	console.log(add5(2));  // 7
 	console.log(add10(2)); // 12
+
+*****Note: Closure can update the values of variable from outside which is a drawback;
+	function celebId(){
+		var cid = 999;
+		return {
+			getID: function(){
+				return cid;
+			}
+			setId: function(newVal){
+				cid = newVal;
+			}
+		}
+ 	}
 	function makeSizer(size) {
 	  return function() {
 	    document.body.style.fontSize = size + 'px';
 	  };
 	}
+	var mjID = celebId(); // At this juncture, the celebId outer function has returned.​
+	mjID.getID(); // 999​
+	mjID.setID(567); // Changes the outer function's variable​
+	mjID.getID(); // 567: //It returns the updated celebrityId variable ****
 
 	var size12 = makeSizer(12);
 	var size14 = makeSizer(14);
-	var size16 = makeSizer(16)
+	var size16 = makeSizer(16);
+	function test(){
+	  return function(){
+	    console.log(this);
+	  }
+	}
+	var m = test();
+	m(); // this will be window scope
 
+PASS BY VALUE AND REFRENCE
+	Javascript is always pass by value, but when a variable refers to an object (including arrays), the "value" is a reference to the object.
+	Changing the value of a variable never changes the underlying primitive or object, it just points the variable to a new primitive or object.
+
+	function f(a,b,c) {
+	    // Argument a is re-assigned to a new value.
+	    // The object or primitive referenced by the original a is unchanged.
+	    a = 3;
+	    // Calling b.push changes its properties - it adds
+	    // a new property b[b.length] with the value "foo".
+	    // So the object referenced by b has been changed.
+	    b.push("foo");
+	    // The "first" property of argument c has been changed.
+	    // So the object referenced by c has been changed (unless c is a primitive)
+	    c.first = false;
+	}
+
+	var x = 4;
+	var y = ["eeny", "miny", "mo"];
+	var z = {first: true};
+	f(x,y,z);
+	console.log(x, y, z.first); // 4, ["eeny", "miny", "mo", "foo"], false
 Concept of Hoisting in JS
 
 	var name = "ab";
@@ -281,6 +465,9 @@ Primitive data types in JS
 what is null ?
 	null is a type its not an object
 
+
+
+
 QUICKY
 
 	console.log(null) 			//will print null
@@ -293,7 +480,34 @@ QUICKY
 	typeof(undefined)           // "undefined"
 	typeof typeof(undefined)    // "string"  since you are checking the typeof undefined which will return "undefined" (string) so typeof "undefined" equals string
 	typeof typeof               // RAISES an error you cant check this 
-	var a = 2, b = 3				// a = 3 also b = 3
+	(function(){
+		var a = 2, b = 3;
+	})			
+	console.log(a,b)   // a = not defined and b = 3 since it is globally defined
+
+	// PRINT 0,1,2,3
+	function test(){
+	  for (var k = 0; k< 4; k++){
+	    (function(k){
+	      setTimeout(function(){
+	         console.log(k);
+	      },1000)
+	    })(k)
+	  }
+	}
+	test();  // will print 0,1,2,3 also it will work if you change var to let since it scope level then no need of anonymous fn.
+
+
+	function test(){
+	  for (var k = 0; k< 4; k++){
+	   setTimeout(function(){
+	         console.log(k);
+	      },1000)
+	    }
+	}
+	test();  // will print 4,4,4,4
+
+
 	var y = 1, x = y = typeof x 	// value of x will be undefined since type of x is undefined
 	+'dude' 					// NaN
 
@@ -359,7 +573,7 @@ What it will alert?
 
 	var go = foo.baz.bar;
 
-	alert(go());   // 3
+	alert(go());   // 3 // since foo.baz.bar is not called we are just storing context of fn
 	alert(foo.baz.bar());  // 1
 
 

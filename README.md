@@ -72,7 +72,7 @@ Hoisting
 ES2015 Features 
 Let vs Const vs Var
 
-    variables are declared by using three keywords 
+variables are declared by using three keywords 
 Constants
     These are immutable their value doesn't change;
     const x = 1;
@@ -117,8 +117,25 @@ Arrow function vs Function definition (normal)
 
     Implicit return
     const double = (x) => x * 2;
+    Arrow function always take this as in parent context
 
 
+Deep Copy vs Shallow Copy
+    Deep copy is when you try to copy the complete object and its reference too
+        Example
+        var c = {a: 2};
+        var b = {a : c.a};
+        if you change "b" then "b" will change but not "c"
+        b = {a : 9}
+        console.log(c); //{a:2}
+    
+    Shahllow copy is when you try to copy the object and its reference address
+        Example
+        var c = {a: 2};
+        var b = c;
+        if you change "b" then "a" will also change
+        b = {a : 9}
+        console.log(c); //{a:9}
 
 Function default parameter value
     With es2015 you can set default value to your function parameters using the following syntax:
@@ -197,7 +214,13 @@ Its a function which will take function as a paramter and time when to call
         console.log("CV")
     }, 250);
 
-
+Memory leaks
+    Memory leaks are the memory which is not required by application anymore and not returned to OS or free memory area. JS is a grabage
+    collected language. The main cause for leaks in garbage collected languages are unwanted references.
+    Reasons for memory leak
+      - Accident global variable which is not of use.
+      - setInterval if you have written code in setInterval to access dom node after every 100 sec may be that node doesnt exits after some time the function would still be called.
+      
 
 Extend Class in JS ES5
 
@@ -236,6 +259,32 @@ JSON vs Javascript object
 Json is data interchange format which can be representation of ordered list or unodered map
 JsObject is type related to Javascript 
 
+WALKING THE DOM
+    DOM operation starts with document object.
+    We have three main properties 
+     - document.documentElement -- Inside html
+     - document.body -- Inside body 
+     - document.head -- Inside head
+
+     document.body is the parent node and it has childnodes
+     JS does have a property to check child node exits or not i.e : hasChildNodes()
+
+     Important ********
+     elem.lastChild wont have any nextSibling but prevSibling will be true but elem.firstChild cannot be null since it might not have
+     element node but may be text node
+     Every XML element is an element node. The text in the XML elements are text nodes. Every attribute is an attribute node.
+
+Recursive thinking: simplify the task and call self:
+    
+    function pow(x, n) {
+      if (n == 1) {
+        return x;
+      } else {
+        return x * pow(x, n - 1);
+      }
+    }
+
+    alert( pow(2, 3) ); // 8
 
 
 WINDOW vs DOCUMENT
@@ -256,6 +305,30 @@ window.onload vs document.onload
     document.onload is fired when the DOM is ready which can be prior to images and other exter­nal con­tent is loaded
 
     In gen­eral, document.onload event is fired before the window.onload
+
+
+
+How to enable chaining in JS
+    Chaining is used to call multiple methods inside a fn.
+    function calculate(a){
+      this.value = a;
+      this.add = function(b) {
+        this.value = this.value + b;
+        return this;
+      }
+      this.multiply = function(b) {
+        this.value = this.value * b;
+        return this;
+      }
+      this.print = function() {
+        console.log(this.value);
+      }
+      
+    };
+    var calC = new calculate(2);
+    console.log(calC);
+    calC.add(2).multiply(2).print(); // prints 8;
+
 
 ASYNC VS DEFER Scripts
 

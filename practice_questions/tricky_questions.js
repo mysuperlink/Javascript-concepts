@@ -34,31 +34,41 @@ function makeCar(){
   this.showColor = function(color){
     return color
   }
+  this.carName = function(){
+    return this.name
+  }
 }
 var myCar = new makeCar(); // create an instance
 myCar.showColor('red');
 
-// what if we want to use this method for some other variable without creating an instance
-var mySonCar = myCar.showColor.bind(myCar)
-console.log(mySonCar('Red'))
+var mySonCar = myCar.showColor
+console.log(mySonCar('Red'))  // red
 
+
+//BIND returns a function 
+//if you want to pass an external object
+var diffObj = {
+  name : "Aatif"
+}
+var mySonCar = myCar.showCarName.bind(diffObj);
+mySonCar(); // Aatif
 
 
 // Call 
 // call will call that function instant first paramter as the reference object and 
 // second fn param if required
-myCar.showColor.call(myCar, "White")
 
 var vC = {name: "Call Example"};
 function callFn(arg){
   console.log(this.name + " by "+arg)
 }
-callFn.call(vC, "aatif")
+callFn.call(vC, "aatif") // call example by aatif
 
 // APPLY 
 // apply will also call that function instant first paramter as the reference object and 
 // second as an array parameter
-myCar.showColor.apply(myCar, ["White"])
+var vC = {name: "Call Example"};
+callFn.showColor.apply(vC, ["White"])
 
 
 // Callback 

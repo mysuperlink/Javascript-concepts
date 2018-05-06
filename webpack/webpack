@@ -51,3 +51,54 @@ module.exports = {
 Webpack allows you to split bundles from configuration entries through the CommonsChunkPlugin
 
 The most basic use case for CommonsChunkPlugin is to extract so-called vendor bundle
+
+
+LOADERS / PLUGINS in Webpack
+Loaders enable webpack to process more than just JavaScript files.
+At a high level, loaders have two purposes in your webpack configuration:
+
+  The `test` property identifies which file or files should be transformed.
+  The `use` property indicates which loader should be used to do the transforming.
+
+While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle optimization and minification all the way to defining environment-like variables.
+
+In order to used a plugin, you have to require() it and add it to plugins array
+  const path = require('path');
+
+  const config = {
+    entry: './path/to/my/entry/file.js',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'my-first-webpack.bundle.js'
+    },
+    module: {
+      rules: [
+        { 
+          test: /\.txt$/,  // when you come across a path that resolves to a '.txt' file inside of a require()/import statement, 
+                           // use the  raw-loader to transform it before you add it to the bundle.
+          use: 'raw-loader' 
+        }
+      ]
+    },
+
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin(),
+      new HtmlWebpackPlugin({template: './src/index.html'})
+    ]
+  };
+
+  module.exports = config;
+
+Some of the important plugins for performance optimization
+
+    CommonsChunkPlugin 
+    The CommonsChunkPlugin is a feature that creates a separate file (known as a chunk).
+    By separating common modules from bundles, the resulting chunked file can be loaded once initially, and stored in cache for later use. This results in pagespeed optimizations as the browser can quickly serve the shared code from cache, rather than being forced to load a larger bundle whenever a new page is visited
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "runtime",
+      filename: "js/runtime.[hash].min.js"
+    }),
+
+
+
