@@ -1,11 +1,4 @@
-// Implement a function like sum(2)(3)
 
-function sum(a){
-	return function(b){
-		return a+b;
-	}
-}
-sum(2)(3) // 5
 
 //Promise 
 // It is used to execute async operations. It accepts two params resolve and reject
@@ -140,6 +133,7 @@ var obj = new f; // throws "TypeError: f is not a constructor"
 //Reverse a Linked List in groups of given size
 
 var a = "abcdefghi";
+
 var actualsize = 3;
 let splitSt = a.split("");
 let size = actualsize;

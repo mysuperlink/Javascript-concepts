@@ -60,11 +60,16 @@ Hoisting
 
         baz()   // it will worsk
         funtion baz(){
-
+          // // THIS FUNCTION WILL BE CALLED AT PARSE TIME
         }
         
         baz()    // baz is not a function  since function expression is hoisted 
         var baz = function(){
+          // THIS FUNCTION WILL BE CALLED AT RUN TIME
+        }
+
+        foo() // here foo is not a function
+        var foo = function foo (){
 
         }
 
@@ -106,7 +111,7 @@ let
 Arrow function vs Function definition (normal)
 
     Arrow functions are implicit return 
-    Function definitions are explicit return where return statement is used in body
+    Function definitions are explicit return where return statement is not used in body
 
     Explicit return
         An explicit return is a function where the return keyword is used in its body.
@@ -307,6 +312,32 @@ window.onload vs document.onload
     In gen­eral, document.onload event is fired before the window.onload
 
 
+What are array like objects?
+    Array like objects are similar document.getElementsByClassName , fucntion arguments etc
+    Arrays are normal objects and their elements are properties with names 0, 1, .. etc.
+    arrays also have a special properties lenght and many function that can manipulate the elements
+
+    function abc() {
+      console.log(arguments.length) 
+
+      // here argumnets are array like objects but .sort , .map function wont work for same
+    }
+
+    when you define array with new Array method 
+    var m = new Array(1,2,3);
+    console.log(m); // it will print [1,2,3];
+
+    var m = new Array(3);
+    console.log(m); // it will print ['','',''];  empty string array with length 3
+
+    var m = new Array("hello");
+    console.log(m); // it will print ['hello'];  empty string array with length 1
+
+    NOTE:
+    use array literal to define array rather than array contructor
+    the Array constructor behaves differently if its only argument is a number
+    
+    Detect an array with m instanceof Array // return true
 
 How to enable chaining in JS
     Chaining is used to call multiple methods inside a fn.
@@ -370,6 +401,92 @@ querySelector vs getElementById
     The query selector methods fetch a static nodeList which was formed at the time of execution. The getelementById or class methods fetch a live nodeList. Fetching a live nodeList is much faster and more efficient.
 
     Mean­ing if you add or remove any ele­ment from the DOM the node list will update
+
+
+Difference between class and function exp
+
+Class are not hosited but functions do
+
+example
+
+
+  const f = new AV() // AV is nnot defined
+  class A {
+    constructor(doors){
+       this.doors = doors
+    }
+  }
+
+  var m = new D(); // creates m as an object m = { doors: undefined}
+  function D() {
+     this.doors = doors
+  }
+
+  class has static methods which are not available to object or the instance
+
+  class A {
+    constructor(doors){
+       this.doors = doors
+    }
+    static getMyName (doors) {
+       this.doors = doors; 
+        const newD = doors;
+        return this.doors + newD;
+        
+    }
+  }
+  const f = new A();
+  f will have f: { doors : undefined} 
+  but if you check f.__proto.constructor:{ getMyName: f()}
+
+  therefore static methods not available to instance
+
+  *** const m = A.getMyName(2); // if this.doors is not available at constutor then it will throw an erro cant merge objects
+
+
+
+EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
+class EventEmitter {
+  constructor() {
+    this.events = [];
+  }
+  on(actionName, cb){
+    this.events.push({
+      type : actionName,
+      method : cb
+    });
+    
+  }
+  emit(actionName, obj){
+     let eventFound = false;
+     for(let k = 0; k < this.events.length; k++){
+       if(this.events[k].type == actionName){
+         eventFound = true;
+         this.events[k].method(obj);
+         console.log(obj);
+         break;
+       }
+     }
+    if(!eventFound){
+       this.events.push(actionName);
+    }
+  }
+}
+
+class Logger extends EventEmitter {
+  
+  logMessage(msg){
+    console.log(msg);
+    this.emit("messageLogged", {id:1})
+  }
+}
+var newLogger = new Logger();
+newLogger.on("messageLogged", (arg)=>{
+  console.log("Listener called "+arg.id)
+});
+
+newLogger.logMessage("hello");
+
 
 Shadow DOM
 

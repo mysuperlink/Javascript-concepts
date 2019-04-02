@@ -1,4 +1,4 @@
-Explain Event Delegation
+ 	Explain Event Delegation
 	
 	Attaching an event to the parent. 
 	Event delegation allows you to avoid adding event listeners to specific nodes; instead, the event listener is added to one parent. That event listener analyzes bubbled events to find a match on child elements
@@ -50,16 +50,29 @@ Explain difference between proto vs prototype
 	}
 	Note :Point.prototype property is created internally once you declare above function
 	Note : Every instance created using new has a __proto__ property which points to its prototype
-	var myPoint = new Point();
+	var myPoint = new Point(); // it will create a instance and can be said it creates a new object like Point{x:undefined}
+	// since at the time of creating instance x and y was not defined.
 
 	// the following are all true
 	myPoint.__proto__ == Point.prototype
-	console.log(Point.prototype)  // myPoint.__proto__
+	console.log(Point.prototype)  // returns a object like. { constructor:function Point() }
 	myPoint.__proto__.__proto__ == Object.prototype
 	myPoint instanceof Point;
 	myPoint instanceof Object;
 
 	Note : Here Point is a constructor function, it builds an object (data structure) procedurally. myPoint is an object constructed by Point() so Point.prototype gets saved to myPoint.__proto__ at that time.
+
+    EXAMPLE
+      let arr = ["Aatif", "Mano"];
+
+      if you console.log (arr) you can acess arr.length  or arr.concat etc
+      these are methods available on array 
+      so console.log(arr.__proto__) outputs an array of objects which is actuall Array.prototype
+      and console.log(arr.__proto__.__proto__) outputs an object which is Object.prototype
+      and console.log(arr.__proto__.__proto__.__proto__) outputs null since chain got over 
+      
+      FOR DETAILS : https://www.youtube.com/watch?v=wstwjQ1yqWQ&feature=youtu.be
+
 
 Explain typeof instanceof and constructor ?
 	Type of: 
@@ -85,6 +98,8 @@ Constructor
 	dave.constructor === Person; //true
 	console.log(Person.constructor) // function Function()
 
+	
+
 	instanceof
 	instanceof is a binary operator. So, to continue the above example:
 
@@ -94,6 +109,12 @@ Constructor
 
 	dave instanceof Object; //true, 
 	dave.constructor == Object // false
+	function foo(){
+	  return foo; 
+	}
+	var bar = new foo();
+	// bar instance of foo is false here since foo returning foo (which again point to fn foo).
+	
 	Explain above in proto vs prototype dave.__proto__.__proto__ == Object.prototype
 	
 	This is because Person.prototype is an object, so Object is in dave‘s prototype chain, therefore dave is an instance of Object.
@@ -219,28 +240,28 @@ var inputObj = {
                 }
         }
 };
-var flattenObject = function(ob) {
-	var toReturn = {};
-	
-	for (var i in ob) {
-		if (!ob.hasOwnProperty(i)) continue;
-		
-		if ((typeof ob[i]) == 'object') {
-			var flatObject = flattenObject(ob[i]);
-			for (var x in flatObject) {
-				if (!flatObject.hasOwnProperty(x)) continue;
-				
-				toReturn[i + '.' + x] = flatObject[x];
-			}
-		} else {
-			toReturn[i] = ob[i];
-		}
-	}
-	return toReturn;
-};
 
-var flatNewObj = flattenObject(inputObj);
-console.log(flatNewObj);
+let val = {};
+let flatKey = "";
+function parseObject(obj, keyName) {
+  for (let key in obj) {
+    if(typeof obj[key] == "object"){
+      flatKey = flatKey +"."+ key;
+      parseObject(obj[key], flatKey);
+    } else {
+      if(keyName) {
+          val[keyName+key] = obj[key];
+      } else {
+       val[key] = obj[key];
+      }
+    }
+  }
+}
+
+
+
+parseObject(inputObj);
+console.log(flatObjecFinal); // characteristics.experience2012:college passout 
 
 Execute a function called `sum` like so:
 
@@ -272,7 +293,7 @@ What will the value for the function when we call
 	console.log(abc())    // undefined as its not returning anything
 
 Promises 
- Promises in javascript are the function which is used to perform aysnce operations and which accepts two params resolve and reject
+ Promises in javascript are the function which is used to perform aysnc operations and which accepts two params resolve and reject
 
 	var promise1 = new Promise(function(resolve, reject) {
 	    setTimeout(function(){
@@ -293,6 +314,12 @@ Promises
 	});
 
 	//Output -> 2,1,gg (all will handle multiple promises)
+
+Write custome promise
+  /// We require state, callback array, reject and resolve
+
+  REFER TO DRAFTS AT aatifbandey2009@gmail.com or customPromise.js in the folder
+
 
 
 Ways to define a global variable
@@ -404,6 +431,7 @@ Closure
 	mjID.getID(); // 999​
 	mjID.setID(567); // Changes the outer function's variable​
 	mjID.getID(); // 567: //It returns the updated celebrityId variable ****
+	console.log(cid) // is undefined
 
 	var size12 = makeSizer(12);
 	var size14 = makeSizer(14);
@@ -462,6 +490,50 @@ Primitive data types in JS
 	Primitive data types are immutable whose type cant be changed.
 	Other than these 6 everything other than is an object 
 
+// Bind 
+// Bind is used to borrow method from objects. Bind returns a function
+function makeCar(){
+  this.name = "BMW";
+  this.showColor = function(color){
+    return color
+  }
+  this.carName = function(){
+    return this.name
+  }
+}
+var myCar = new makeCar(); // create an instance
+myCar.showColor('red');
+
+var mySonCar = myCar.showColor
+console.log(mySonCar('Red'))  // red
+
+
+//BIND returns a function 
+//if you want to pass an external object
+var diffObj = {
+  name : "Aatif"
+}
+var mySonCar = myCar.showCarName.bind(diffObj);
+mySonCar(); // Aatif
+
+
+// Call 
+// call will call that function instant first paramter as the reference object and 
+// second fn param if required
+
+var vC = {name: "Call Example"};
+function callFn(arg){
+  console.log(this.name + " by "+arg)
+}
+callFn.call(vC, "aatif") // call example by aatif
+
+// APPLY 
+// apply will also call that function instant first paramter as the reference object and 
+// second as an array parameter
+var vC = {name: "Call Example"};
+callFn.showColor.apply(vC, ["White"])
+
+
 what is null ?
 	null is a type its not an object
 
@@ -481,14 +553,16 @@ QUICKY
 	typeof typeof(undefined)    // "string"  since you are checking the typeof undefined which will return "undefined" (string) so typeof "undefined" equals string
 	typeof typeof               // RAISES an error you cant check this 
 	(function(){
-		var a = 2, b = 3;
+		var a = 2, 
+		b = 3;
 	})			
-	console.log(a,b)   // a = not defined and b = 3 since it is globally defined
+	console.log(a,b)   // a and b not defined
 
 	// PRINT 0,1,2,3
 	function test(){
 	  for (var k = 0; k< 4; k++){
 	    (function(k){
+	    	// k  will work as closure variable
 	      setTimeout(function(){
 	         console.log(k);
 	      },1000)
@@ -496,7 +570,7 @@ QUICKY
 	  }
 	}
 	test();  // will print 0,1,2,3 also it will work if you change var to let since it scope level then no need of anonymous fn.
-
+    // since we have anonymous function declared it will work like a closure
 
 	function test(){
 	  for (var k = 0; k< 4; k++){
@@ -507,9 +581,38 @@ QUICKY
 	}
 	test();  // will print 4,4,4,4
 
+	var m = {name: "Hello1"};
+	var n = {name: "Hello2"};
+	var p = {name: "Hello3"};
+
+	m[p] = "hello4" // since object property can be string or number 
+	                //  { name: "Hello 1", "[Object object]": "hello4"}
+
+	n[m] = "hello5" //  since object property can be string or number and m has a object object string
+	                //  { name: "Hello 2", "[Object object]": "hello5"}
+
+	p[m] = "hello6" //  since object property can be string or number and m has a object object string
+	                //  { name: "Hello 3", "[Object object]": "hello6"}
+
+	if (function() {
+		console.log("hello") // it will print since true value
+	})  
+	if (+function() {
+		console.log("hello") // it will not print its a false + function will try to add up which is NaN
+	})     
+
+	1 + "2"+"3"   // 123
+	1 + +"2"+"3"  // 33 // since conversion will take place +"2" will convert number into 2    
+	+"2"  // will output 2 as number
+	1 - +"2" +"3" // -13
+	1 - -"2" +"3" // 33
+
+	if({} === {}) { console.log("hl1")} // false will not print comparision objects
 
 	var y = 1, x = y = typeof x 	// value of x will be undefined since type of x is undefined
 	+'dude' 					// NaN
+
+
 
 How JSONP works for CORS
 
@@ -529,17 +632,34 @@ Implement a function for add(3,5) and add(3)(5)
 	we will make use of currying and closure
 	function add(a){
 		return function(b){
+	      if(typeof b !== "undefined") {
+	        a = a + b;
+	        console.log(a);
+	        return arguments.callee; // callee is used to exceute a fn within a function when fn name is unknown
+	      } else {
+	        console.log(a+b);
 			return a + b;
+	      }
+	      
 		}
 	}
 	var init = add(3);  // here we stored return function from a
 	init(5);  	// 8
 	init(7);	// 10
-	add(3)(5)   	// 8
+	add(3)(5);   	// 8
+	add(3)(5)(2);   //10
 
 What is the use of Strict mode ?
 
 	It is used to throw run time errors like when you did not declare a variable or trying to delete a non existing property
+
+Optimizing search or SEO
+   	Responsive design is most recommended.
+   	Use rel='canonical' + rel='alternate' for separate desktop/mobile sites. 
+      // supoose if you have two web page purely same but with url can be diffrent you can use rel="canonical"
+      // to help webmaster to identify and it wont be marked as duplicate
+    Use Vary HTTP header for a single URL dynamically serving separate desktop/mobile HTMLs.
+	Use noindex for pages you want to limit access to those who know the URL.
 
 Difference between
 	function test(){
