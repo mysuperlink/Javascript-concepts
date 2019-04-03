@@ -443,7 +443,20 @@ example
 
   *** const m = A.getMyName(2); // if this.doors is not available at constutor then it will throw an erro cant merge objects
 
-
+Higher Order functions
+    HOF are the function which take fn as an arguments and return a new function
+    function test(fn) {
+      
+      return function(a,b) {
+        fn(a,b)
+      }
+    }
+    function add(a,b) {
+      return a+b;
+    }
+    var m = test(add);
+    m(2,3);
+    
 
 EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
 class EventEmitter {
