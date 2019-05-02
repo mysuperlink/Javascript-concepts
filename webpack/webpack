@@ -6,6 +6,7 @@ It's like browserify but can split your app into multiple files. If you have mul
 It often replaces grunt or gulp because it can build and bundle CSS, preprocessed CSS, compile-to-JS languages and images, among other things
 
 
+
 // webpack.config.js
 module.exports = {
   entry: './main.js',
@@ -13,6 +14,83 @@ module.exports = {
     filename: 'bundle.js'       
   }
 };
+
+
+What are rules in web pack?
+
+Rules are used to define some configuration for loaders like if we use sass we have to install sass-loader, node-sass 
+If we are using ES6 we might require babel loader or image loaders
+module.exports = {
+  entry: './main.js',
+  output: {
+    filename: 'bundle.js'       
+  },
+  rules: [
+    {
+        test: \/.(jpg|png),
+        use:[
+          'file-loader'
+        ]
+    },
+    {
+        test: \/.scss,
+        use:[
+          'sass-loader', 'node-sass'
+        ]
+    }
+  ]
+};
+
+We know browser cache JS/CSS file, now if the content is changed, How to configure JS/html files.
+we do this with help of md5 
+
+output: {
+    filename: 'bundle.[contenthash].js'  // contenthash will automatically generate some random number       
+}
+Also if you change the content in JS/CSS file it will also change the hashcode again 
+
+
+What are Web pack plugins
+They run some set of rules based on use of plugin example
+
+How do we clean dist/build folder when we run build?
+we use clean-webpack-plugin
+
+How do we minify JS
+
+module.exports = {
+  entry: './main.js',
+  output: {
+    filename: 'bundle.js'       
+  },
+  plugins:[
+      new uglifyJsPlugin(),
+      new minifyCssExtractPlgun({
+         fileName: 'styles.[contenthash].css'. /// output css
+      })
+  ]
+}
+
+Now we have hash js and css file how do we auto update our index.html or create auto html file
+we can use html-webpack-plugin
+can configure html and add as many options we want
+plugins:[
+    new htmlWebPackPlugin({
+        title: "My html file",
+        fileName: "index.html", // cutsomFileName.html or dist/cutsomFileName.html
+        meta:{
+          viewport: "width=device-width, initial"
+        }
+    })
+]
+
+
+
+
+
+//***************//********
+
+
 
 How to invoke webpack
 
