@@ -1,4 +1,5 @@
 How does the browser rendering engine work?
+    
     1. DOM
     2. Css object model (CSSOM) // Blocked
     3. Render
