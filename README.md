@@ -1,4 +1,3 @@
-https://docs.google.com/spreadsheets/d/1aMf6I6U1EQq6lIMADEa5gd_wqMRGpSStHtt2wcWvg3A/edit#gid=0
 How does the browser rendering engine work?
     1. DOM
     2. Css object model (CSSOM) // Blocked
