@@ -532,5 +532,5 @@ What is export default vs export name in JS
         export class ABC {}
         export class DEF{}
 
-        import {ABC, DEF} from './filename'; 
+        import {ABC, DEF} from './filename'; // named export
 
