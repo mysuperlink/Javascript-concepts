@@ -25,6 +25,8 @@
 
 	});
 
+Check here https://github.com/lydiahallie/javascript-questions 
+
 Chaining in JQuery
 
 	Chaining in Jquery is used to add method on a selected element
@@ -492,6 +494,7 @@ Primitive data types in JS
 
 // Bind 
 // Bind is used to borrow method from objects. Bind returns a function
+
 function makeCar(){
   this.name = "BMW";
   this.showColor = function(color){
@@ -527,9 +530,8 @@ function callFn(arg){
 }
 callFn.call(vC, "aatif") // call example by aatif
 
-// APPLY 
-// apply will also call that function instant first paramter as the reference object and 
-// second as an array parameter
+// APPLY - apply will always take second param as array of arguments
+// apply will also call that function instant first paramter as the reference object and  second as an array parameter
 var vC = {name: "Call Example"};
 callFn.showColor.apply(vC, ["White"])
 

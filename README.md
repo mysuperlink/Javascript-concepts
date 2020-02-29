@@ -123,6 +123,16 @@ Arrow function vs Function definition (normal)
     Implicit return
     const double = (x) => x * 2;
     Arrow function always take this as in parent context
+    example
+    const ab = {
+      radius: 2,
+      getDiaMeter(){
+        return this.radius *2;
+      },
+      dia = () => this.radius * 2
+    }
+    ab.getDiaMeter() // 4
+    ab.dia // NaN since this will be taken as window scope
 
 
 Deep Copy vs Shallow Copy
