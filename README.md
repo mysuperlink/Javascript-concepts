@@ -370,6 +370,22 @@ How to enable chaining in JS
     console.log(calC);
     calC.add(2).multiply(2).print(); // prints 8;
 
+    const simpleChaining = {
+      val: null,
+      add: function (b) {
+        this.val = this.val+b;
+        return this;
+      },
+      sub: function (c) {
+        this.val = this.val-c;
+        return this;
+      },
+      print: function (c) {
+        console.log(this.val)
+        return this;
+      }
+    }
+    simpleChain.add(4).sub(2).print(); // 2
 
 ASYNC VS DEFER Scripts
 
@@ -466,7 +482,16 @@ Higher Order functions
     }
     var m = test(add);
     m(2,3);
-    
+
+Write HOC
+import { store } from "react-redux";
+
+const HOC = (props) =>{
+  cost state = store.getState()
+  return function (Component) {
+    return <Component {...props} state={state}   />
+  }
+}
 
 EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
 class EventEmitter {

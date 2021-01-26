@@ -516,7 +516,7 @@ console.log(mySonCar('Red'))  // red
 var diffObj = {
   name : "Aatif"
 }
-var mySonCar = myCar.showCarName.bind(diffObj);
+var mySonCar = myCar.carName.bind(diffObj);
 mySonCar(); // Aatif
 
 
