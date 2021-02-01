@@ -25,7 +25,7 @@
 
 	});
 
-Check here https://github.com/lydiahallie/javascript-questions 
+Check here   
 
 Chaining in JQuery
 
@@ -285,6 +285,14 @@ Function.prototype.callAfter = function (time,a,b) {
 
 sum.callAfter(2000,4,5);
 
+- Custom connect 
+ import { store, dispatch } from “react-redux”;    
+ const connect = (props) => {      
+	 	const state = store.getState();       
+	 	return function (Component){
+		  return (<Component {..props} state={state} dispatch={dispatch} />)
+		}
+	}
 
 
 What will the value for the function when we call
