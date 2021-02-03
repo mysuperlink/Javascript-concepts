@@ -492,6 +492,8 @@ const HOC = (props) =>{
     return <Component {...props} state={state}   />
   }
 }
+How to use
+HOC("data")(Component)
 
 EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
 class EventEmitter {

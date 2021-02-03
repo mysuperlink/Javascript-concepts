@@ -508,8 +508,8 @@ function makeCar(){
   this.showColor = function(color){
     return color
   }
-  this.carName = function(){
-    return this.name
+  this.carName = function(model){
+    return this.name + "model"+model
   }
 }
 var myCar = new makeCar(); // create an instance
@@ -525,7 +525,7 @@ var diffObj = {
   name : "Aatif"
 }
 var mySonCar = myCar.carName.bind(diffObj);
-mySonCar(); // Aatif
+mySonCar("X1"); // Aatif model X1
 
 let basic = {
   'name': 'shyam',
@@ -540,6 +540,20 @@ let mycallBinded = callMe.mybind(basic, 'jammu');
 callBinded('j&k'):
 mycallBinded('j&k');
 
+Pollyfill for bind, apply and call
+Function.prototype.mybind = function (context) {
+  let fn = this;
+  return function () {
+      fn.call(context)
+  }
+};
+
+Function.prototype.mybind = function (context, ...args1) {
+  let fn = this;
+  return function (...arg2) {
+      fn.apply(context, [...args1, ...arg2])
+  }
+};
 
 // Call 
 // call will call that function instant first paramter as the reference object and 
@@ -556,20 +570,7 @@ callFn.call(vC, "aatif") // call example by aatif
 var vC = {name: "Call Example"};
 callFn.showColor.apply(vC, ["White"])
 
-Pollyfill for bind, apply and call
-Function.prototype.mybind = function (context) {
-  let fn = this;
-  return function () {
-      fn.call(context)
-  }
-};
 
-Function.prototype.mybind = function (context, ...args1) {
-  let fn = this;
-  return function (...arg2) {
-      fn.apply(context, [...args1, ...arg2])
-  }
-};
 
 what is null ?
 	null is a type its not an object
@@ -612,7 +613,27 @@ QUICKY
 
 	console.log(a[b]); // 456 a["[object Object]"] = 123 then we are doing a["[object Object]"] = 456
 
+	// index.js
+	console.log('running index.js');
+	import { sum } from './sum.js';
+	console.log(sum(1, 2));
 
+	// sum.js
+	console.log('running sum.js');
+	export const sum = (a, b) => a + b; 
+	 //ORDER WILL BE // running sum js, running index.js and 3
+
+	count.js
+	let count = 1;
+	export default count
+
+	a.js
+	import count from "./count"
+	count +=1 
+	console.log(myCounter); // Error // imported module is read-only: you cannot modify the imported module
+													//	Only the module that exports them can change its value.
+
+	FOR MORE QUESTIONS: https://github.com/lydiahallie/javascript-questions START AFTER 45
 	(function(){
 		var a = 2, 
 		b = 3;
