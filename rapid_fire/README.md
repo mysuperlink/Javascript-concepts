@@ -589,6 +589,30 @@ QUICKY
 	typeof(undefined)           // "undefined"
 	typeof typeof(undefined)    // "string"  since you are checking the typeof undefined which will return "undefined" (string) so typeof "undefined" equals string
 	typeof typeof               // RAISES an error you cant check this 
+
+	let number = 0;
+	console.log(number++);  //0 The postfix unary operator ++: Returns the value (this returns 0) Increments the value (number is now 1)
+	console.log(++number);  // 2  The prefix unary operator ++: Increments the value (number is now 2) Returns the value (this returns 2)
+	console.log(number);		// 2
+
+	const obj = { 1: 'a', 2: 'b', 3: 'c' };
+	const set = new Set([1, 2, 3, 4, 5]);
+
+	obj.hasOwnProperty('1'); // true
+	obj.hasOwnProperty(1);   // true
+	set.has('1');   // false since set check type too
+	set.has(1);     // true
+
+	const a = {};
+	const b = { key: 'b' };
+	const c = { key: 'c' };
+
+	a[b] = 123;
+	a[c] = 456;
+
+	console.log(a[b]); // 456 a["[object Object]"] = 123 then we are doing a["[object Object]"] = 456
+
+
 	(function(){
 		var a = 2, 
 		b = 3;
