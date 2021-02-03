@@ -527,6 +527,19 @@ var diffObj = {
 var mySonCar = myCar.carName.bind(diffObj);
 mySonCar(); // Aatif
 
+let basic = {
+  'name': 'shyam',
+  'age': 24
+};
+
+function callMe(city) {
+  console.log('Hi! my name is ' + this.name + ' and my age is ' + this.age + ' and my city is ' + arguments[0] + ' and state is ' + arguments[1]);
+}
+let callBinded = callMe.bind(basic, 'jammu');
+let mycallBinded = callMe.mybind(basic, 'jammu');
+callBinded('j&k'):
+mycallBinded('j&k');
+
 
 // Call 
 // call will call that function instant first paramter as the reference object and 
@@ -543,6 +556,20 @@ callFn.call(vC, "aatif") // call example by aatif
 var vC = {name: "Call Example"};
 callFn.showColor.apply(vC, ["White"])
 
+Pollyfill for bind, apply and call
+Function.prototype.mybind = function (context) {
+  let fn = this;
+  return function () {
+      fn.call(context)
+  }
+};
+
+Function.prototype.mybind = function (context, ...args1) {
+  let fn = this;
+  return function (...arg2) {
+      fn.apply(context, [...args1, ...arg2])
+  }
+};
 
 what is null ?
 	null is a type its not an object
