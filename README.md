@@ -495,6 +495,50 @@ const HOC = (props) =>{
 How to use
 HOC("data")(Component)
 
+const add5 = x => x + 5;
+const multiply = (x, y) => x * y;
+
+function compose(...args) {
+   let self = this;
+
+    return function(b){
+	
+    for (let k =0; k<args.length;k++){
+      console.log(args,b);
+      if(typeof b != "undefined"){
+          arguments.callee;
+      }
+   
+      b = args[k].call(self, b);
+    }
+  } 
+}
+
+const multiplyAndAdd5 = compose(
+  add5,
+  multiply
+);
+
+multiplyAndAdd5(6, 2); 
+
+Pure function vs Impure function
+
+Pure function are functions which takes input as argument and return same output without any side effect
+const isThisPure = number => { 
+ 
+  return number * 4
+}
+
+ler myVar = 4;
+
+const notPure = x => { 
+ 
+  return globalNumber *= x 
+}
+Here we're updating a variable (myVar) which is defined outside of our multiplyByThree function.
+
+
+
 EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
 class EventEmitter {
   constructor() {
