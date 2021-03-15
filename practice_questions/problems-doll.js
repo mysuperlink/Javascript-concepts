@@ -104,3 +104,88 @@ function checkDollConfig(parts, checkParts) {
   console.log( dolls); // ['barbee]
 }
 checkDollConfig(parts,parts1);
+
+
+// Build VS Folder structure TREE
+
+
+
+const data = [
+  {
+    type: "file",
+    name: "abc.js",
+    children: []
+  },
+  {
+    type: "folder",
+    name: "Folder 1",
+    children: [
+      {
+        type: "file",
+        name: "folder-1-file-1.js"
+      },
+      {
+        type: "file",
+        name: "folder-1-file-2.js"
+      }
+    ]
+  },
+  {
+    type: "file",
+    name: "abcd.js",
+    children: []
+  },
+  {
+    type: "folder",
+    name: "abcde",
+    children: [
+      {
+        type: "file",
+        name: "folder-3-file-1.js"
+      },
+      {
+        type: "file",
+        name: "folder-3-file-2.js"
+      },
+      {
+        type: "folder",
+        name: "folder-3-file-3",
+        children: [
+          {
+            type: "file",
+            name: "folder-3-file-21.js"
+          }
+        ]
+      }
+    ]
+  }
+];
+const App = () => {
+  
+  const renderFileAndFolders = (data, mainHtml = []) => {
+
+    for (let k = 0; k < data.length; k++) {
+      if (data[k].type === "folder" && data[k] && data[k].children) {
+        const f = renderFileAndFolders(data[k].children);
+
+        mainHtml.push(
+          <div>
+            <div>
+              {" "}
+              <b>Folder</b>
+              {data[k].name}
+              <div>{f}</div>
+            </div>
+          </div>
+        );
+        
+      } else if (data[k].type === "file") {
+        mainHtml.push(<div>{data[k].name}</div>);
+      }
+      
+    }
+    return mainHtml;
+  };
+  return <div className="App">{renderFileAndFolders(data)}</div>;
+};
+export default App;
