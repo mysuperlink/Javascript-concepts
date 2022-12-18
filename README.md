@@ -471,6 +471,7 @@ example
 
 Higher Order functions
     HOF are the function which take fn as an arguments and return a new function
+
     function test(fn) {
       
       return function(a,b) {
@@ -484,18 +485,19 @@ Higher Order functions
     m(2,3);
 
 Write HOC
-import { store } from "react-redux";
 
-const HOC = (props) =>{
+`import { store } from "react-redux";`
+
+`const HOC = (props) =>{
   cost state = store.getState()
   return function (Component) {
     return <Component {...props} state={state}   />
   }
-}
+}`
 How to use
-HOC("data")(Component)
+`HOC("data")(Component)`
 
-const add5 = x => x + 5;
+`const add5 = x => x + 5;
 const multiply = (x, y) => x * y;
 
 function compose(...args) {
@@ -519,12 +521,13 @@ const multiplyAndAdd5 = compose(
   multiply
 );
 
-multiplyAndAdd5(6, 2); 
+multiplyAndAdd5(6, 2);`
 
 Pure function vs Impure function
 
 Pure function are functions which takes input as argument and return same output without any side effect
-const isThisPure = number => { 
+
+`const isThisPure = number => { 
  
   return number * 4
 }
@@ -534,13 +537,13 @@ ler myVar = 4;
 const notPure = x => { 
  
   return globalNumber *= x 
-}
+}`
 Here we're updating a variable (myVar) which is defined outside of our multiplyByThree function.
 
 
 
 EVENT EMITTER in plain JAVASCRIPT {before reading this please read nodeJS folder the basics of nodejs and event emitters}
-class EventEmitter {
+`class EventEmitter {
   constructor() {
     this.events = [];
   }
@@ -565,9 +568,9 @@ class EventEmitter {
        this.events.push(actionName);
     }
   }
-}
+}`
 
-class Logger extends EventEmitter {
+`class Logger extends EventEmitter {
   
   logMessage(msg){
     console.log(msg);
@@ -579,7 +582,7 @@ newLogger.on("messageLogged", (arg)=>{
   console.log("Listener called "+arg.id)
 });
 
-newLogger.logMessage("hello");
+newLogger.logMessage("hello");`
 
 
 Shadow DOM
